@@ -2,31 +2,26 @@
   "name": "capitalisk-ui",
   "version": "1.0.0",
   "description": "",
-
   "main": "dist/capitalisk-ui.ssr.js",
   "browser": "dist/capitalisk-ui.esm.js",
   "module": "dist/capitalisk-ui.esm.js",
   "unpkg": "dist/capitalisk-ui.min.js",
-
   "files": [
     "dist/*",
     "src/**/*.vue"
   ],
   "sideEffects": false,
-
   "scripts": {
     "serve": "vue-cli-service serve dev/serve.js",
     "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
     "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
     "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
-    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife"
+    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife",
+    "build:showcase": "cross-env NODE_ENV=production BUILD=showcase rollup --config build/rollup.config.js"
   },
-
-  "dependencies": {
-  },
-
   "devDependencies": {
     "@babel/core": "^7.12.10",
+    "@babel/plugin-transform-runtime": "^7.14.5",
     "@babel/preset-env": "^7.12.11",
     "@rollup/plugin-alias": "^3.1.1",
     "@rollup/plugin-babel": "^5.2.2",

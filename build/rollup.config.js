@@ -12,14 +12,16 @@ import { terser } from 'rollup-plugin-terser';
 import minimist from 'minimist';
 
 // Get browserslist config and remove ie from es build targets
-const esbrowserslist = fs.readFileSync('./.browserslistrc')
+const esbrowserslist = fs
+  .readFileSync('./.browserslistrc')
   .toString()
   .split('\n')
   .filter((entry) => entry && entry.substring(0, 2) !== 'ie');
 
 // Extract babel preset-env config, to combine with esbrowserslist
-const babelPresetEnvConfig = require('../babel.config')
-  .presets.filter((entry) => entry[0] === '@babel/preset-env')[0][1];
+const babelPresetEnvConfig = require('../babel.config').presets.filter(
+  (entry) => entry[0] === '@babel/preset-env',
+)[0][1];
 
 const argv = minimist(process.argv.slice(2));
 
@@ -41,8 +43,7 @@ const baseConfig = {
     replace: {
       'process.env.NODE_ENV': JSON.stringify('production'),
     },
-    vue: {
-    },
+    vue: {},
     postVue: [
       resolve({
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
@@ -84,7 +85,7 @@ const globals = {
 
 // Customize configs for individual targets
 const buildFormats = [];
-if (!argv.format || argv.format === 'es') {
+if ((!argv.format || argv.format === 'es') && !process.env.BUILD) {
   const esConfig = {
     ...baseConfig,
     input: 'src/entry.esm.js',
@@ -116,7 +117,7 @@ if (!argv.format || argv.format === 'es') {
   buildFormats.push(esConfig);
 }
 
-if (!argv.format || argv.format === 'cjs') {
+if ((!argv.format || argv.format === 'cjs') && !process.env.BUILD) {
   const umdConfig = {
     ...baseConfig,
     external,
@@ -139,7 +140,7 @@ if (!argv.format || argv.format === 'cjs') {
   buildFormats.push(umdConfig);
 }
 
-if (!argv.format || argv.format === 'iife') {
+if ((!argv.format || argv.format === 'iife') && !process.env.BUILD) {
   const unpkgConfig = {
     ...baseConfig,
     external,
@@ -157,6 +158,48 @@ if (!argv.format || argv.format === 'iife') {
       vue(baseConfig.plugins.vue),
       ...baseConfig.plugins.postVue,
       babel(baseConfig.plugins.babel),
+      terser({
+        output: {
+          ecma: 5,
+        },
+      }),
+    ],
+  };
+  buildFormats.push(unpkgConfig);
+}
+
+if (!argv.format && process.env.BUILD === 'showcase') {
+  const unpkgConfig = {
+    ...baseConfig,
+    input: 'dev/serve.js',
+    external,
+    output: {
+      compact: true,
+      file: 'showcase/index.js',
+      format: 'iife',
+      name: 'CapitaliskUi',
+      exports: 'auto',
+      globals,
+    },
+    plugins: [
+      replace(baseConfig.plugins.replace),
+      ...baseConfig.plugins.preVue,
+      vue(baseConfig.plugins.vue),
+      ...baseConfig.plugins.postVue,
+      babel({
+        ...baseConfig.plugins.babel,
+        presets: [
+          [
+            '@babel/preset-env',
+            {
+              ...babelPresetEnvConfig,
+              targets: esbrowserslist,
+            },
+          ],
+        ],
+        plugins: ['@babel/plugin-transform-runtime'],
+        babelHelpers: 'runtime',
+      }),
       terser({
         output: {
           ecma: 5,
