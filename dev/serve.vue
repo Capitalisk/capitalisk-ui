@@ -29,6 +29,7 @@ export default defineComponent({
 
 <template>
   <div id="app">
+    <Notification ref="notificationRef" />
     <Sample />
     <Input
       v-model="inputRef"
@@ -37,9 +38,8 @@ export default defineComponent({
       suffix="Money"
     />
     <Button value="Button" @click="openNotification" />
-    <Tooltip content="This is a tooltip" />
     <Switch v-model="switchRef" />
-    <Notification ref="notificationRef" />
+    <Tooltip content="This is a tooltip" />
   </div>
 </template>
 

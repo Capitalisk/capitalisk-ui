@@ -168,14 +168,14 @@ if ((!argv.format || argv.format === 'iife') && !process.env.BUILD) {
   buildFormats.push(unpkgConfig);
 }
 
-if (!argv.format && process.env.BUILD === 'showcase') {
+if (!argv.format || process.env.BUILD === 'showcase') {
   const unpkgConfig = {
     ...baseConfig,
     input: 'dev/serve.js',
     external,
     output: {
       compact: true,
-      file: 'showcase/index.js',
+      file: 'showcase/bundle.min.js',
       format: 'iife',
       name: 'CapitaliskUi',
       exports: 'auto',
