@@ -9,10 +9,19 @@ export default defineComponent({
   components,
   setup() {
     const inputRef = ref(null);
+    const switchRef = ref(false);
+    const notificationRef = ref(null);
 
     return {
       inputRef,
-      logButton: () => console.log('button clicked'),
+      switchRef,
+      notificationRef,
+      openNotification: () => {
+        notificationRef.value.notify({
+          message: 'Testing the notification',
+          seconds: 2,
+        });
+      },
     };
   },
 });
@@ -27,10 +36,20 @@ export default defineComponent({
       prefix="R$"
       suffix="Money"
     />
-    <Button value="Button" @click="logButton" />
+    <Button value="Button" @click="openNotification" />
+    <Tooltip content="This is a tooltip" />
+    <Switch v-model="switchRef" />
+    <Notification ref="notificationRef" />
   </div>
 </template>
 
 <style scoped>
 @import url('./serve.css');
+
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
 </style>
