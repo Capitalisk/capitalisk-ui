@@ -6,7 +6,9 @@
 </template>
 
 <script>
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'Loading',
   props: {
     size: {
@@ -14,7 +16,7 @@ export default {
       default: 25,
     },
   },
-};
+});
 </script>
 
 <style scoped>

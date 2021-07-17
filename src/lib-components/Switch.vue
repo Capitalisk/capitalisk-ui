@@ -10,15 +10,15 @@
 </template>
 
 <script>
-import { getCurrentInstance } from 'vue';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'Switch',
   props: {
     modelValue: { type: Boolean, default: false },
     id: { type: String, default: '' },
   },
-};
+});
 </script>
 
 <style scoped>

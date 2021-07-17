@@ -13,11 +13,11 @@
 </template>
 
 <script>
-import { computed, inject, onMounted, ref } from 'vue';
+import { computed, inject, onMounted, ref, defineComponent } from 'vue';
 
 import Loading from './Loading';
 
-export default {
+export default defineComponent({
   name: 'Section',
   props: {
     title: { type: String, default: null },
@@ -30,7 +30,7 @@ export default {
   setup() {
     return {};
   },
-};
+});
 </script>
 
 <style scoped>

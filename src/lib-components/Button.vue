@@ -13,7 +13,9 @@
 </template>
 
 <script>
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'Button',
   props: {
     value: { type: String },
@@ -22,7 +24,7 @@ export default {
     loading: { type: Boolean, default: false },
     icon: { type: String, default: null },
   },
-};
+});
 </script>
 
 <style scoped>

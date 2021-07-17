@@ -34,11 +34,11 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue';
+import { ref, computed, defineComponent } from 'vue';
 
 import Input from './Input';
 
-export default {
+export default defineComponent({
   name: 'Select',
   props: {
     modelValue: { type: String, default: null },
@@ -56,7 +56,7 @@ export default {
     };
   },
   components: { Input },
-};
+});
 </script>
 
 <style scoped>

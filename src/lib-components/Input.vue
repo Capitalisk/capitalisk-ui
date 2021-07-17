@@ -24,9 +24,9 @@
 </template>
 
 <script>
-import { ref, computed, toRefs, watch } from 'vue';
+import { ref, computed, toRefs, watch, defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'Input',
   props: {
     modelValue: { type: String, default: '' },
@@ -73,7 +73,7 @@ export default {
       },
     };
   },
-};
+});
 </script>
 
 <style scoped>

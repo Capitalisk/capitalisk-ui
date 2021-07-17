@@ -3,7 +3,9 @@
 </template>
 
 <script>
-export default {
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   name: 'Avatar',
   props: {
     color: {
@@ -18,7 +20,7 @@ export default {
     console.log(slots);
     return {};
   },
-};
+});
 </script>
 
 <style scoped>

@@ -14,11 +14,11 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue';
+import { ref, computed, defineComponent } from 'vue';
 
 import Notification from './Notification';
 
-export default {
+export default defineComponent({
   name: 'Copy',
   props: {
     value: { type: [String, Number], default: '' },
@@ -59,5 +59,5 @@ export default {
     };
   },
   components: { Notification },
-};
+});
 </script>

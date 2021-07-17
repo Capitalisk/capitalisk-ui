@@ -17,9 +17,9 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'Tooltip',
   props: {
     content: { type: String, required: true },
@@ -33,7 +33,7 @@ export default {
       tooltipActive,
     };
   },
-};
+});
 </script>
 
 <style scoped>

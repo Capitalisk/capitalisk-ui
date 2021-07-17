@@ -7,13 +7,15 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
+
 import Section from './Section';
 
-export default {
+export default defineComponent({
   name: 'Popup',
   setup() {},
   components: { Section },
-};
+});
 </script>
 
 <style scoped>
