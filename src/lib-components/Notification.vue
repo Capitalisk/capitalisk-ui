@@ -1,23 +1,21 @@
 <template>
   <template v-if="notifications">
-    <transition-group name="fade-slide">
-      <div
-        v-for="(notification, i) in notifications"
-        :key="i"
-        class="notification pa-4 ma-2"
-        :class="notification.error ? 'danger' : ''"
-        :ref="
-          (el) => {
-            if (el) divs[i] = el;
-          }
-        "
-      >
-        <div class="close-btn cursor-pointer" @click="denotify(i)">
-          &#10005;
-        </div>
-        <div class="break mr-2">{{ notification.message }}</div>
+    <div
+      v-for="(notification, i) in notifications"
+      :key="i"
+      class="notification pa-4 ma-2"
+      :class="notification.error ? 'danger' : ''"
+      :ref="
+        (el) => {
+          if (el) divs[i] = el;
+        }
+      "
+    >
+      <div class="close-btn cursor-pointer" @click="denotify(i)">
+        &#10005;
       </div>
-    </transition-group>
+      <div class="break mr-2">{{ notification.message }}</div>
+    </div>
   </template>
 </template>
 
