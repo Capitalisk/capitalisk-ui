@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs from 'fs';
 
 // fs.readdir((err, files) => {
 //   for (let i = 0; i < files.length; i++) {
@@ -13,3 +13,10 @@ export { default as Button } from './Button.vue';
 export { default as Tooltip } from './Tooltip.vue';
 export { default as Switch } from './Switch.vue';
 export { default as Notification } from './Notification.vue';
+export { default as Avatar } from './Avatar.vue';
+export { default as Copy } from './Copy.vue';
+export { default as DataTable } from './DataTable.vue';
+export { default as Popup } from './Popup.vue';
+export { default as Section } from './Section.vue';
+export { default as Select } from './Select.vue';
+export { default as Loading } from './Loading.vue';

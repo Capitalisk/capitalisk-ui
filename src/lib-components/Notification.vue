@@ -23,7 +23,6 @@ import { inject, onBeforeUpdate, onUpdated, reactive, ref } from 'vue';
 export default {
   name: 'Notification',
   setup() {
-    const store = inject('store');
     const divs = ref([]);
 
     onBeforeUpdate(() => (divs.value = []));
